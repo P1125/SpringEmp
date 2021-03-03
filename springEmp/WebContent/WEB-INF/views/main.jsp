@@ -8,6 +8,10 @@
 </head>
 <body>
  메인 페이지 입 니 다. 
- <img src="./resources/images/Hydrangeas.png">
+ <a href="getSearchEmp">사원조회</a>
+ 
+ <a href="getSearchDept">부서조회</a>
+ 
+<!--  <img src="./resources/images/Hydrangeas.png"> -->
 </body>
 </html>

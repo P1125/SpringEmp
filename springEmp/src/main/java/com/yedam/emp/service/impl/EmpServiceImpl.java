@@ -10,22 +10,24 @@ import com.yedam.emp.service.EmpService;
 
 @Service
 public class EmpServiceImpl implements EmpService {
-	@Autowired EmpSpringDAO dao;
 	
+	//@Autowired EmpSpringDAO dao;
+	//@Autowired EmpMybatisDAO dao;
+	@Autowired EmpMapper dao;
 	public int insertEmp(EmpVO vo) {
-		return 0;
+		return dao.insertEmp(vo);
 	}
 
 	public int updateEmp(EmpVO vo) {
-		return 0;
+		return dao.updateEmp(vo);
 	}
 
 	public int deleteEmp(EmpVO vo) {
-		return 0;
+		return dao.deleteEmp(vo);
 	}
 
 	public EmpVO getEmp(EmpVO vo) {
-		return null;
+		return dao.getEmp(vo);
 	}
 
 	public List<EmpVO> getSearchEmp(EmpVO vo) {
