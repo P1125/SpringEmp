@@ -1,6 +1,6 @@
 package com.yedam.dept.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yedam.dept.DeptVO;
+import com.yedam.dept.service.DeptSearchVO;
 import com.yedam.dept.service.DeptService;
+import com.yedam.emp.common.Paging;
 
 @Controller
 public class DeptController {
@@ -41,7 +43,16 @@ public class DeptController {
 		return "/dept/getDept";
 	}
 	@GetMapping("/getSearchDept")
-	public String getSarchEmp(DeptVO vo, Model model) {
+	public String getSarchDept(DeptSearchVO vo,Paging paging ,Model model) {
+		paging.setPageUnit(5);
+		paging.setPage(5);
+		if(vo.getPage() == null) {
+			vo.setPage(1);
+		}
+		vo.setStart(paging.getFirst());
+		vo.setEnd(paging.getLast());
+		paging.setTotalRecord(100);
+		model.addAttribute("paging", paging);
 		model.addAttribute("list", deptService.getSearchDept(vo));
 		return "/dept/getSearchDept";
 	}

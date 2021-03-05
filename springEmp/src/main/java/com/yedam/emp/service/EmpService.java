@@ -2,6 +2,7 @@ package com.yedam.emp.service;
 
 import java.util.List;
 
+import com.yedam.emp.EmpSearchVO;
 import com.yedam.emp.EmpVO;
 
 public interface EmpService {
@@ -14,7 +15,9 @@ public interface EmpService {
 	// one look up
 	public EmpVO getEmp(EmpVO vo);
 	// All Inquiry
-	public List<EmpVO> getSearchEmp(EmpVO vo);
+	public List<EmpVO> getSearchEmp(EmpSearchVO vo);
+	// Number of Case
+	public int getCount(EmpSearchVO vo);
 	
 	
 }

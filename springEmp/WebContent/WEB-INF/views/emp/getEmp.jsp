@@ -18,6 +18,8 @@ $(function(){  // () {}  CHECK
 </script>
 </head>
 <body>
+Parameter ${employee}
+
 <h3>사원 상세보기</h3>
 	사번 : ${emp.employee_id}<br>
 	이름 : ${emp.first_name}<br>

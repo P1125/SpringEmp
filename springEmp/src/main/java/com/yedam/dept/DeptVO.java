@@ -15,4 +15,6 @@ public class DeptVO {
 	private String manager_id;
 	private String location_id;
 	private String city;
+	
+	
 }

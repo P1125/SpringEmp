@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,45 +40,35 @@ $(function(){
 </script>
 </head>
 <body>
-	<h3 id="top">사원수정</h3>
-	<form action="updateEmp" method="post" name="frm">
-		employee_id <input type="number" name="employee_id" value="${empVO.employee_id}"
-			<c:if test="${not empty empVO.employee_id}">readonly="readonly"</c:if>><br>
+		<h3 id="top">사원입력</h3>
+	<form:form modelAttribute="empVO" action="updateEmp" method="post" name="frm"> 
+		employee_id <form:input path="employee_id" /><br>
 
-		first_name <input name="first_name" value="${empVO.first_name }"><br>
-		last_name <input name="last_name" value="${empVO.last_name }"><br>
-		 email <input type="email" name="email" value="${empVO.email }">
-		<!--이메일중복체크 -->
-		<button type="button" id="btnEmail">중복체크</button>
-		<span id="emailResult"></span> 
-		<br> phone_number<input type="text" name="phone_number" value="${empVO.phone_number}"><br>
-		 hire_date <input type="date" name="hire_date" value="${empVO.hire_date}"><br> 
-		 job_id <select name="job_id">
-			<c:forEach var="job" items="${jobList}">
-				<option value="${empVO.job_id}" selected="selected">${job.job_title}
-			</c:forEach>
-		</select>					<!-- Should be thrown in the value -->
-		<br> department_id			<input type="radio" name="department_id" value="10">ㄱㄱ 
-		<c:forEach var="dept" items="${deptList}">
-			<input type="radio" name="department_id" value="10"
-				<c:if test="${dept.department_id == empVO.department_id}">
-			 checked="checked"</c:if>>
-		 ${dept.department_name}
-		</c:forEach>
-		job_id <select name="job_id">
-					<option value="AC_ACCOUNT">Accounting Manager></option>
-					<c:forEach items="${jobList}" var="job">
-						<option value="${job.job_id}" selected="selected">
-					</c:forEach>
-				</select>
-		<br> manager_id <input type="text" name="manager_id" value="${empVO.manager_id}"> 
-						<input type="text" value="">
+		first_name 	<form:input path="first_name" /><br>
+		last_name 	<form:input path="last_name" /><br>
+		email 		<form:input path="email"/>
+					<form:button type="button" id="btnEmail">중복체크</form:button>
+					<span id="emailResult"></span><br> 
+		phone_number<form:input type="text" path="phone_number" /><br>
+		hire_date 	<form:input type="date" path="hire_date"/><br> 
+		department_id<form:radiobuttons  items="${deptList}" 
+										 path="department_id"
+										 itemLabel="department_name" 
+										 itemValue="department_id"/><br> 
+		job_id <form:select path="job_id">
+					<option value="">선택</option>
+					<form:options items="${jobList}" itemLabel="job_title" itemValue="job_id" />
+				</form:select><br>
+				
+		manager_id 
+		<form:input  path="manager_id"/> 
 
 		<button type="button" id="empSearch">사원검색</button><br>
 		<button type="submit">등록</button>
 		<button type="reset">취소</button>
 		<a href="getSearchEmp">목록가기</a>
 
-	</form>
+
+	</form:form>
 </body>
 </html>

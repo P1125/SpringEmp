@@ -2,23 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.dept.service.impl.DeptMapper">
-	<select id="getSearchDept" parameterType="dept"  resultType="dept">
-		  		SELECT d.department_id, d.department_name, d.manager_id, e.last_name,  l.city
+	<select id="getCount"  resultType="int">
+		 	SELECT COUNT(*) 
+			FROM  DEPARTMENT D, EMPLOYEES E
+		WHERE D.DEPARTMENT_ID = E.DEPARTMENT_ID	
+			<if test="department_id != null and department_id != '' ">
+     			AND	D.DEPARTMENT_ID = #{department_id}
+			</if>
+	</select>
+	
+	<select id="getSearchDept" parameterType="deptSearchVO"  resultType="dept">
+		   select b.*   from     ( select rownum rn, a.* from ( 
+		  
+		  	SELECT D.*, E.FIRST_NAME
+		  		FROM  DEPARTMENTS D, EMPLOYEES E
+		  		WHERE D.MANAGER_ID = E.MANAGER_ID
+    <if test="department_id != null and department_id != '' ">
+     			AND	D.DEPARTMENT_ID = #{department_id}
+			</if>
+    ORDER BY D.DEPARTMENT_ID
+	    ) a ) b  where rn between #{start} and #{end}
+		    <!-- 
+		    select *
+		    from departments
+		     -->
+	</select>
+	
+	
+	
+	
+		  		
+		  		
+		<!-- city my	SELECT d.department_id, d.department_name, d.manager_id, e.last_name,  l.city
 		FROM departments d  left join employees e 
                                       on d.manager_id = e.employee_id
                                    left join locations l
-                                      on d.location_id = l.location_id	
+                                      on d.location_id = l.location_id	 -->  	
     
-	</select>
+	
 	
 	<insert id="insertDept" parameterType="dept">
-						INSERT_EMP = INSERT  INTO  DEPARTMENTS
-						     		 				DEPARTMENT_ID,
+					INSERT  INTO  DEPARTMENTS
+						     		 				(DEPARTMENT_ID,
 													DEPARTMENT_NAME,
-													MANAGER_ID
+													MANAGER_ID,
+													LOCATION_ID)
 											VALUES(#{department_id},
 												   #{department_name},
-												   #{manager_id})
+												   #{manager_id},
+												   #{location_id})
 		</insert>
 
 	<update id="updateDept">

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.yedam.emp.service.EmpService;
 import com.yedam.emp.service.impl.EmpMapper;
 //Can do without controller or service
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,7 +19,8 @@ import com.yedam.emp.service.impl.EmpMapper;
 public class EmpMapperClient {
 	@Autowired EmpMapper empMapper;
 		
-	@Test
+	@Autowired EmpService empService;
+	//@Test
 	public void updateEmp() {
 		EmpVO vo = EmpVO.builder()
 						.employee_id("4002")
@@ -29,27 +31,27 @@ public class EmpMapperClient {
 	}
 	
 	
-	//@Test
+	@Test
 	public void insertEmp() {
 		EmpVO vo = EmpVO.builder()
-						.employee_id("4002")
-						.first_name("na")
-						.last_name("test1")
-						.email("abc@aa.c")
+						.employee_id("5012")
+						.first_name("1st4")
+						.last_name("1tdest646")
+						.email("abq@baq.com")
 						.hire_date(new java.sql.Date(new Date().getTime()))
 						.job_id("IT_PROG")
 						.department_id("20")
 						.build();
-		int result = empMapper.insertEmp(vo);
+		int result = empService.insertEmp(vo);
 		assertEquals(result, 1);
 	}
 	
 	//@Test
-	public void getSearchEmp() {
-		EmpVO vo = EmpVO.builder().first_name("na").build(); // lombok
-		List<EmpVO> list = empMapper.getSearchEmp(vo);
-		System.out.println(list);
-	}
+//	public void getSearchEmp() {
+//		EmpVO vo = EmpVO.builder().first_name("na").build(); // lombok
+//		List<EmpVO> list = empMapper.getSearchEmp(vo);
+//		System.out.println(list);
+//	}
 	
 	
 	//@Test

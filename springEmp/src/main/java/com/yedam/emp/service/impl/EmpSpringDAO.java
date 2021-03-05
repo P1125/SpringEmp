@@ -17,8 +17,9 @@ public class EmpSpringDAO {
 	JdbcTemplate jdbc;
 
 	private final String INSERT_EMP = "INSERT  INTO  EMPLOYEES"
-									+ "( " + "	EMPLOYEE_ID," + " FIRST_NAME," + " LAST_NAME,"
-									+ " EMAIL," + " HIRE_DATE" + " JOB_ID" + " DEPARTMENT_ID)" + " VALUES(?,?,?,?,?,?,?)";;
+									+ "( EMPLOYEE_ID," + " FIRST_NAME," + " LAST_NAME,"
+									+ " EMAIL," + " HIRE_DATE," + " JOB_ID," +" MANAGER_ID," +" DEPARTMENT_ID)"
+									+ " VALUES(?,?,?,?,?,?,?,?)";
 
 	private final String UPDATE_EMP = "UPDATE EMPLOYEES SET "
 									+ "FIRST_NAME=?, LAST_NAME=?, EMAIL=?, PHONE_NUMBER=?,DEPARTMENT_ID=?, MANAGER_ID=?"

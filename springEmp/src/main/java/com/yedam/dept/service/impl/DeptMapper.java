@@ -3,6 +3,8 @@ package com.yedam.dept.service.impl;
 import java.util.List;
 
 import com.yedam.dept.DeptVO;
+import com.yedam.dept.service.DeptSearchVO;
+import com.yedam.emp.EmpSearchVO;
 import com.yedam.emp.EmpVO;
 
 public interface DeptMapper {
@@ -16,4 +18,7 @@ public interface DeptMapper {
 	public DeptVO getDept(DeptVO vo);
 
 	public List<DeptVO> getSearchDept(DeptVO vo);
+	
+	public int getCount(DeptSearchVO vo);
+
 }

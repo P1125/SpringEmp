@@ -12,6 +12,8 @@
 		<config>src/main/resources/config/datasource-context.xml</config>
 		<config>src/main/java/com/yedam/dept/service/impl/DeptServiceImpl.java</config>
 		<config>src/main/resources/config/mybatis-context.xml</config>
+		<config>src/main/resources/config/transaction-context.xml</config>
+		<config>src/main/resources/mappings/user_mapper.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
